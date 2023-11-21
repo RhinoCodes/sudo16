@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>sudo16</title>
+    <link href="/style.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <h1><a href="/" style="color: white">sudo16</a> - Getting Started</h1>
+    <div id="description">
+        <p id="body">The sudo16 is a fantasy 16 bit computer with a limited instruction set. How many instructions? That's for you to find out! The "game", if you will, is to reverse engineer the CPU and compete with your fellow hackers to create the coolest program in the limited system specifications (65,536 bytes of  ROM, and 256 bytes of RAM).<br><br>However, if you get stuck, or you would rather get straight to development, you can reveal the instruction details below:</p>
+        <br>
+        <button id="reveal">Reveal</button>
+        <div id="contents" hidden>
+            <ul style="margin-top: 0.5em">
+                <li>0x11 [range]- Copy an 8 bit address range (ie 0x00 to 0xFF would be 0x00FF) to memory. The address range in rom will directly correspond to the range in memory after the copy. Affected by 0x15</li>
+                <li>0x0A [value] - Set register A to a 16 bit value</li>
+                <li>0x06 - Swap register A and B</li>
+                <li>0x09 - Add register A and B, result into A</li>
+                <li>0x12 - Set memory pointer to register A (note: register a can be 16 bit, while the mem pointer can only be 8 bit, CPU will take low byte if number is 16bit)</li>
+                <li>0x14 - Set the memory[mempointer] to register A</li>
+                <li>0x15 [value] - Set rom segment to an 8bit number (CPU will take low byte if number is 16 bit). This allows 0x11 to copy from any location on the rom, as long as it is in the same 256 byte block.</li>
+                <li>0x08 - Set register A to memory[mempointer]</li>
+                <li>0x03 [location] - Jump to location in ROM if register A is not zero.</li>
+                <li>0x13 [location] - Jump to location</li>
+                <li>0x01 - Output register A to listening device (currently only the Output terminal)</li>
+                <li>0xFFFF - Halt</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+      function reveal() {
+        document.getElementById('contents').hidden = !document.getElementById('contents').hidden
+      }
+      document.getElementById("reveal").onclick = reveal;
+    </script>
+  </body>
+</html>

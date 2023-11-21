@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>sudo16</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+  </head>
+  <body>
+    <h1>sudo16</h1>
+    <div id="all">
+      <div id="registers">
+        <p class="title">Registers</p>
+        <div class="details" id="registerslist">
+          <p>Register A: 0x00</p>
+          <br>
+          <p>Register B: 0x00</p><br>
+        </div>
+      </div>
+      <div id="memory">
+        <p class="title">Memory</p>
+        <div class="details">
+        </div>
+      </div>
+      <div id="output">
+        <p class="title">Output</p>
+        <textarea class="details" id="results" readonly></textarea>
+        <div id="interactions">
+          <p id="lastInstruction"></p>
+          <div id="buttons">
+            <button id="run" onclick="runhz()">Run <input id="hertz" type="number" placeholder="250"></input> hz</button>
+            <button onclick="step()">Step</button>
+          </div>
+        </div>
+      </div>
+
+      <ul id="guides">
+        <h3>Guides</h3>
+        <li><a href="/guides/getting_started.html">Getting Started</a></li>
+      </ul>
+    </div>
+    <div id="code">
+      <p class="title">Code</p>
+      <textarea class="details"></textarea>
+      <button id="save" onclick="run_wasm()">Save</button>
+    </div>
+    <button id="share">Share</button>
+    <script src='../pkg/website.js'></script>
+    <noscript>This page contains webassembly and javascript content, please enable javascript in your browser.</noscript>
+    <script src="./index.js"></script>
+
+    
+  </body>
+</html>
