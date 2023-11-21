@@ -170,6 +170,10 @@ html {
     resize: none;
 }
 
+a {
+  font-family: 'Source Code Pro', monospace;
+}
+
 p#body {
   font-family: 'Source Code Pro', monospace;
   font-size: 14pt;
