@@ -7,3 +7,4 @@ wasm-pack.log
 examples.md
 node_modules
 dist
+.webpack
