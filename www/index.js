@@ -8,7 +8,7 @@ var hertz = document.getElementById('hertz');
 var run = document.getElementById('run');
 var hz;
 var completed = false;
-var asap_enabled = false; // Only enable if you know what you're doing!!
+var asap_enabled = true; 
 
 document.getElementById("code").children[1].value = localStorage.getItem("code") ? localStorage.getItem("code") : "0x11 0x0412 0x13 0x13 0xFF 0x48 0x65 0x6c 0x6c 0x6f 0x2c 0x20 0x57 0x6f 0x72 0x6c 0x64 0x21 0x00 0x0A 0x05 0x12 0x06 0x08 0x01 0x0A 0x01 0x09 0x12 0x06 0x08 0x03 0x18 0xFFFF";
 
@@ -157,13 +157,24 @@ function runhz() {
   }}
   let hzx = document.getElementById("hertz").value;
   run.innerHTML = "Stop";
-  if (hzx > 250 || hzx == 0 && asap_enabled) {
+  if ((hzx > 250 || hzx == 0) && asap_enabled) {
     console.log("Max set speed is 250hz, switching to ASAP execution")
     while (running == true) {
       if (step() == "done") {
         break;
       }
     }
+    vm_mem = vm.get_memory()
+    document.getElementsByClassName("details")[1].innerHTML = ''
+    for (mem in vm_mem) {
+      if (mem == vm.mempointer) {
+        document.getElementsByClassName("details")[1].innerHTML += "<p style='color:red'>" + vm_mem[mem].toString(16) + "</p>";
+      } else {
+        document.getElementsByClassName("details")[1].innerHTML += "<p>" + vm_mem[mem].toString(16) + "</p>";
+      }
+    }
+    completed = true;
+    run.innerHTML = "Reset";
     return;
   }
   hz = setInterval(() => {
