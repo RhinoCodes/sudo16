@@ -2,7 +2,7 @@
 name = "sudo16"
 version = "0.1.0"
 authors = ["willf"]
-edition = "2023"
+edition = "2021"
 repository = "https://github.com/RhinoCodes/sudo16/"
 license = "Apache-2.0"
 
