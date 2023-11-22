@@ -1,0 +1,3 @@
+[submodule "frontends/web"]
+	path = frontends/web
+	url = https://github.com/RhinoCodes/sudo16-web.git
