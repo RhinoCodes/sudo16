@@ -16,17 +16,8 @@ pub struct VirtualMachine {
 }
 
 #[wasm_bindgen]
-extern "C" {
-    // Use `js_namespace` here to bind `console.log(..)` instead of just
-    // `log(..)`
-    #[wasm_bindgen(js_namespace = console)]
-    fn log(s: &str);
-}
-
-#[wasm_bindgen]
 impl VirtualMachine {
     pub fn new(code: Vec<u16>) -> VirtualMachine {
-        log(&format!("{:?}", code));
         VirtualMachine {
             rom: [0; 65536],
             mem: [0; 256],

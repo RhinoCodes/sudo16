@@ -10,3 +10,6 @@ Want to know how it works? Check out the source! `lib.rs` contains the emulator 
 Then, [install wasm-pack](https://rustwasm.github.io/wasm-pack/installer/)
 
 Then, you should be able to simply run `wasm-pack build --target no-modules` to get the `.wasm` and `.js` files in `pkg/`.
+
+### Can the WASM binary be used standalone?
+Possibly. It seems running rust wasm binaries outside of the browser is not quite plug-and-play with web binaries just yet, but feel free to submit a PR if you know of a way to improve compatibility.
