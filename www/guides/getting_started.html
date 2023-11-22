@@ -39,7 +39,7 @@
         </div>
         <br>
         <br>
-        <p>Note: Setting the emulation speed to over 250hz switches the execution to As Fast as Possible execution.</p>
+        <p>Note: Due to the minimum interval for setInterval, the fastest clock speed you can select is 250hz (4ms per instruction). However, you can switch to As Fast as Possible execution by entering MAX into the hertz box. However, due to the nature of javascript freezing the main thread, this method of execution may cause your program to crash (this causes the input example to, for example). This is not an issue for programs like hello world, that run through once, but may affect longer running programs. A fix is possible, but too much for this MVP. YMMV</p>
     </div>
     <script>
       function reveal() {

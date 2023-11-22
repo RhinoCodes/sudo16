@@ -1,4 +1,4 @@
-# sudo16
+# [sudo16](https://16.sudos.site)
 
 The sudo16 is a fantasy 16 bit computer with a limited instruction set. How many instructions? That's for you to find out! The "game", if you will, is to reverse engineer the CPU and compete with your fellow hackers to create the coolest program in the limited system specifications (65,536 bytes of  ROM, and 256 bytes of RAM).
 

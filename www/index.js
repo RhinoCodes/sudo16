@@ -9,6 +9,7 @@ var run = document.getElementById('run');
 var hz;
 var completed = false;
 var asap_enabled = true; 
+var hz_val = "";
 
 document.getElementById("code").children[1].value = localStorage.getItem("code") ? localStorage.getItem("code") : "0x11 0x0412 0x13 0x13 0xFF 0x48 0x65 0x6c 0x6c 0x6f 0x2c 0x20 0x57 0x6f 0x72 0x6c 0x64 0x21 0x00 0x0A 0x05 0x12 0x06 0x08 0x01 0x0A 0x01 0x09 0x12 0x06 0x08 0x03 0x18 0xFFFF";
 
@@ -141,24 +142,26 @@ function runhz() {
     reset();
     completed = false;
     running = false;
-    run.innerHTML = `Run <input id="hertz" type="number" placeholder="250"></input> hz`;
+    run.innerHTML = `Run <input id="hertz" type="text" inputmode="numeric" value="${hz_val}"></input> hz`;
     setuphertzinput();
     return;
   }
   if (running) {
     clearInterval(hz);
     running=false;
-    run.innerHTML = `Run <input id="hertz" type="number" placeholder="250"></input> hz`;
+    run.innerHTML = `Run <input id="hertz" type="text" inputmode="numeric" value="${hz_val}"></input> hz`;
     setuphertzinput();
     
     return;
-  } else {{
+  } else {
     running = true;
-  }}
+  }
   let hzx = document.getElementById("hertz").value;
+  
   run.innerHTML = "Stop";
-  if ((hzx > 250 || hzx == 0) && asap_enabled) {
-    console.log("Max set speed is 250hz, switching to ASAP execution")
+  if (hzx == "MAX" && asap_enabled) {
+    hz_val = hzx;
+    console.log("AFAP execution enabled.")
     while (running == true) {
       if (step() == "done") {
         break;
@@ -175,15 +178,16 @@ function runhz() {
     }
     completed = true;
     run.innerHTML = "Reset";
-    return;
+  } else if (!isNaN(hzx)) {
+    hz_val = hzx;
+    hz = setInterval(() => {
+      if (step() == "done") {
+        clearInterval(hz);
+        completed = true;
+        run.innerHTML = "Reset";
+      }
+    }, (1/hzx)*1000)
   }
-  hz = setInterval(() => {
-    if (step() == "done") {
-      clearInterval(hz);
-      completed = true;
-      run.innerHTML = "Reset";
-    }
-  }, (1/hzx)*1000)
 }
 
 function step() {
