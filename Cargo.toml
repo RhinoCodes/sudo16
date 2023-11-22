@@ -1,8 +1,10 @@
 [package]
-name = "website"
+name = "sudo16"
 version = "0.1.0"
 authors = ["willf"]
-edition = "2018"
+edition = "2023"
+repository = "https://github.com/RhinoCodes/sudo16/"
+license = "Apache-2.0"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
